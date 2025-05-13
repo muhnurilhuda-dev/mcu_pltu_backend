@@ -23,7 +23,7 @@ class SignupRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string'],
+            'nama_lengkap' => ['required', 'string'],
             'email' => ['required', 'email', 'unique:users,email'],
             'password' => [
                 'required',
@@ -33,7 +33,8 @@ class SignupRequest extends FormRequest
                     ->numbers()
                     ->symbols()
             ],
-            'jabatan' => ['required', 'string']
+            'role' => ['required', 'string'],
+            'status_aktif' => ['required', 'string']
         ];
     }
 }

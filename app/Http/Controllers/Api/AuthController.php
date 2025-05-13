@@ -11,21 +11,39 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    public function signup(SignupRequest $request) {
+    public function register(SignupRequest $request) {
         $data = $request->validated();
 
         /** @var User $user  */
         $user = User::create([
-            'name' => $data['name'],
+            'nama_lengkap' => $data['nama_lengkap'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            'jabatan' => $data['jabatan'],
+            'role' => $data['role'],
+            'status_aktif' => $data['status_aktif'],
         ]);
 
-        $token = $user->createToken('main')->plainTextToken;
+        $token = $user->createToken('auth_token')->plainTextToken;
 
-        return response(compact('user', 'token'));
+        // return response(compact('user', 'token'));
+
+        return response()->json([
+            'user' => $user,
+            'token' => $token,
+            'redirect_url' => '/dashboard'
+        ]);
     }
+
+    // private function getRedirectUrl($jabatan) {
+    //     $routes = [
+    //         'safety_officer' => '/dashboard/safety',
+    //         'permit_applicant' => '/dashboard/permit-applicant',
+    //         'tim_medis' => '/dashboard/medical',
+    //         'asisten_manajer_k3' => '/dashboard/k3-manager',
+    //     ];
+
+    //     return $routes[$jabatan] ?? '/dashboard';
+    // }
 
     public function login(LoginRequest $request) {
         $credentials = $request->validated();

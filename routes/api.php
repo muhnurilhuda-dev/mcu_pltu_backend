@@ -13,6 +13,6 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::apiResource('/users', UserController::class);
 });
 
-Route::post('/signup', [AuthController::class, 'signup']);
+Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 // Route::post('/logout', [AuthController::class, 'logout']);

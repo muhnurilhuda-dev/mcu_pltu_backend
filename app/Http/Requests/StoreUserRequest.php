@@ -23,7 +23,7 @@ class StoreUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:55'],
+            'nama_lengkap' => ['required', 'string', 'max:55'],
             'email' => ['required', 'email', 'unique:users,email'],
             'password' => [
                 'required',
@@ -33,7 +33,8 @@ class StoreUserRequest extends FormRequest
                     ->numbers()
                     ->symbols()
             ],
-            'jabatan' => ['required', 'string']
+            'role' => ['required', 'string'],
+            'status_aktif' => ['required', 'string']
         ];
     }
 }
