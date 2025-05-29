@@ -2,7 +2,10 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\JenisParametersController;
+use App\Http\Controllers\JenisWorkPermitController;
 use App\Http\Controllers\PermitToWorkController;
+use App\Http\Controllers\WorkPermitController;
 use App\Models\JenisPtw;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -18,6 +21,9 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::get('/permit-types', function() {
         return JenisPtw::all();
     });
+
+    Route::apiResource('jenis-work-permits', JenisWorkPermitController::class);
+    Route::apiResource('jenis-parameters', JenisParametersController::class);
 });
 
 Route::post('/register', [AuthController::class, 'register']);

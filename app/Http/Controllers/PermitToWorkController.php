@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Validator;
 
 class PermitToWorkController extends Controller
 {
+    public function index() {
+        $data = PermitToWork
+    }
+
     /**
      * Store a new Permit To Work entry.
      */
